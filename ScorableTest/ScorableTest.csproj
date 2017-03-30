@@ -112,11 +112,13 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Dialogs\Scorable1\Scorable1Dialog.cs" />
-    <Compile Include="Dialogs\Scorable1\Scorable1.cs" />
+    <Compile Include="Dialogs\Balance\Current\CheckBalanceCurrentDialog.cs" />
+    <Compile Include="Dialogs\Balance\Savings\CheckBalanceSavingsDialog.cs" />
+    <Compile Include="Dialogs\MakePayment\ScorableMakePaymentDialog.cs" />
+    <Compile Include="Dialogs\MakePayment\ScorableMakePayment.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
-    <Compile Include="Dialogs\Scorable2\Scorable2.cs" />
-    <Compile Include="Dialogs\Scorable2\Scorable2Dialog.cs" />
+    <Compile Include="Dialogs\Balance\ScorableCheckBalance.cs" />
+    <Compile Include="Dialogs\Balance\ScorableCheckBalanceDialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

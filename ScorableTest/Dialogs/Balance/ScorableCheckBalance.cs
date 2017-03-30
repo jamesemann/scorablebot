@@ -6,13 +6,13 @@ using Microsoft.Bot.Builder.Internals.Fibers;
 using Microsoft.Bot.Builder.Scorables.Internals;
 using Microsoft.Bot.Connector;
 
-namespace ScorableTest.Dialogs.Scorable1
+namespace ScorableTest.Dialogs.Balance
 {
-    public class Scorable1 : ScorableBase<IActivity, string, double>
+    public class ScorableCheckBalance : ScorableBase<IActivity, string, double>
     {
         private readonly IDialogStack _stack;
 
-        public Scorable1(IDialogStack stack)
+        public ScorableCheckBalance(IDialogStack stack)
         {
             SetField.NotNull(out _stack, nameof(stack), stack);
         }
@@ -24,18 +24,18 @@ namespace ScorableTest.Dialogs.Scorable1
 
         protected override double GetScore(IActivity item, string state)
         {
-            return state != null && state == "scorable1-triggered" ? 1 : 0;
+            return state != null && state == "scorable2-triggered" ? 1 : 0;
         }
 
         protected override bool HasScore(IActivity item, string state)
         {
-            return state != null && state == "scorable1-triggered";
+            return state != null && state == "scorable2-triggered";
         }
 
         protected override Task PostAsync(IActivity item, string state, CancellationToken token)
         {
             var message = item as IMessageActivity;
-            var dialog = new Scorable1Dialog(state);
+            var dialog = new ScorableCheckBalanceDialog();
             var interruption = dialog.Void(_stack);
             _stack.Call(interruption, null);
             return Task.CompletedTask;
@@ -49,8 +49,8 @@ namespace ScorableTest.Dialogs.Scorable1
 
             var messageText = message.Text;
 
-            if (messageText == "scorable1")
-                return "scorable1-triggered";
+            if (messageText == "check balance")
+                return "scorable2-triggered";
                     // this value is passed to GetScore/HasScore/PostAsync and can be anything meaningful to the scoring
             return null;
         }

@@ -4,8 +4,8 @@ using Autofac;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Scorables;
 using Microsoft.Bot.Connector;
-using ScorableTest.Dialogs.Scorable1;
-using ScorableTest.Dialogs.Scorable2;
+using ScorableTest.Dialogs.Balance;
+using ScorableTest.Dialogs.MakePayment;
 
 namespace ScorableTest
 {
@@ -17,11 +17,11 @@ namespace ScorableTest
 
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<Scorable1>()
+            builder.RegisterType<ScorableMakePayment>()
                 .As<IScorable<IActivity, double>>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<Scorable2>()
+            builder.RegisterType<ScorableCheckBalance>()
                 .As<IScorable<IActivity, double>>()
                 .InstancePerLifetimeScope();
 
