@@ -10,7 +10,7 @@ namespace ScorableTest.Dialogs
     {
         public Task StartAsync(IDialogContext context)
         {
-            context.PostAsync($"I am the root dialog, you can interrupt me with IScorable by saying 'help' at any point.  Otherwise, I will just echo back what you say to me :)");
+            context.PostAsync($"[RootDialog] I am the root dialog.");
 
             context.Wait(MessageReceivedAsync);
 
@@ -19,12 +19,12 @@ namespace ScorableTest.Dialogs
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
         {
-            var activity = await result as Activity;
-
-            int length = (activity.Text ?? string.Empty).Length;
-
-            await context.PostAsync($"You sent {activity.Text} which was {length} characters");
-
+            var activity = await result as IMessageActivity;
+            if (activity.Type == ActivityTypes.Message)
+            {
+                int length = (activity.Text ?? string.Empty).Length;
+                await context.PostAsync($"[RootDialog] You sent {activity.Text} which was {length} characters");
+            }
             context.Wait(MessageReceivedAsync);
         }
     }

@@ -1,18 +1,16 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.Internals.Fibers;
-using Microsoft.Bot.Connector;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Connector;
 
 namespace ScorableTest.Dialogs
 {
-
     [Serializable]
-    public class HelpDialog : IDialog<object>
+    public class Scorable1Dialog : IDialog<object>
     {
         private string value;
 
-        public HelpDialog(string value)
+        public Scorable1Dialog(string value)
         {
             this.value = value;
         }
@@ -20,14 +18,15 @@ namespace ScorableTest.Dialogs
         public async Task StartAsync(IDialogContext context)
         {
             // State transition - wait for 'start' message from user
-            await context.PostAsync("[HelpDialog] You are now in the scorable dialog. Say something to complete the dialog.");
+            await context.PostAsync(
+                "[Scorable1Dialog] You are now in the scorable dialog. Say something to complete the dialog.");
             context.Wait(MessageReceivedStart);
         }
 
         public async Task MessageReceivedStart(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
-            await context.PostAsync("[HelpDialog] Done, returning to parent dialog.");
-            context.Done<object>(new object());
+            await context.PostAsync("[Scorable1Dialog] Done, returning to parent dialog.");
+            context.Done(new object());
         }
     }
 }

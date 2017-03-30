@@ -112,9 +112,11 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Dialogs\HelpDialog.cs" />
-    <Compile Include="Dialogs\HelpScorable.cs" />
+    <Compile Include="Dialogs\Scorable1\Scorable1Dialog.cs" />
+    <Compile Include="Dialogs\Scorable1\Scorable1.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="Dialogs\Scorable2\Scorable2.cs" />
+    <Compile Include="Dialogs\Scorable2\Scorable2Dialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
